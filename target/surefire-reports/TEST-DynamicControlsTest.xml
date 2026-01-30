@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="HoverTest" time="4.333" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="DynamicControlsTest" time="15.874" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,22 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="testHoverProfiles" classname="HoverTest" time="2.696">
-    <system-out><![CDATA[Найдено элементов: 3
-
---- Обработка элемента #1 ---
-Текущий URL: https://the-internet.herokuapp.com/users/1
-ID пользователя: 1
-
---- Обработка элемента #2 ---
-Текущий URL: https://the-internet.herokuapp.com/users/2
-ID пользователя: 2
-
---- Обработка элемента #3 ---
-Текущий URL: https://the-internet.herokuapp.com/users/3
-ID пользователя: 3
-
-Все тесты успешно завершены
-]]></system-out>
-  </testcase>
+  <testcase name="testDynamicCheckbox" classname="DynamicControlsTest" time="15.851"/>
 </testsuite>
