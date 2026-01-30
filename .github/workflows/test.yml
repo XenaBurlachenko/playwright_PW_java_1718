@@ -19,7 +19,7 @@ jobs:
         
         # Выводим информацию
         echo "ЧТО ЗАПУСКАЕМ:"
-        echo "Тест: FileUploadTestComplete"
+        echo "Тест: HoverTest"
         
         # Выводим результат
         if echo "$TEST_OUTPUT" | grep -q "BUILD SUCCESS"; then
