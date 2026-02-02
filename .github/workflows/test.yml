@@ -1,27 +1,12 @@
-name: Submit Task
+name: Simple Test
 
-on:
-  workflow_dispatch:
+on: [push ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup environment
-      run: |
-        sudo apt update
-        sudo apt install -y openjdk-11-jdk maven nodejs npm
-        npm install -g playwright
-        npx playwright install chromium
-        
-    - name: Execute tests
-      run: |
-        mvn test
-        
-    - name: Success
-      if: success()
-      run: echo "Всё норм"
+      - uses: actions/checkout@v4
+      - run: sudo apt install -y openjdk-11-jdk maven nodejs npm
+      - run: npx playwright install chromium
+      - run: mvn test
