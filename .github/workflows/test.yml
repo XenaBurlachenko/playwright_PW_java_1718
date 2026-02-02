@@ -1,44 +1,22 @@
-name: Playwright Tests
+name: Playwright POM Tests
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:  # Ручной запуск
+on: [push]
 
 jobs:
   test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Set up JDK 11
+    - uses: actions/checkout@v4
+    
+    - name: Setup Java
       uses: actions/setup-java@v4
       with:
         java-version: '11'
         distribution: 'temurin'
+        cache: maven
         
-    - name: Setup Maven
-      uses: stCarolas/setup-maven@v4
-      with:
-        maven-version: '3.9.6'
-        
-    - name: Install Playwright browsers
-      run: mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps chromium"
-      
-    - name: Run tests with Maven
-      run: mvn test
-      
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: |
-          target/surefire-reports/
-          target/site/surefire-report.html
-        retention-days: 30
+    - name: Run tests
+      run: mvn clean test -B
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
