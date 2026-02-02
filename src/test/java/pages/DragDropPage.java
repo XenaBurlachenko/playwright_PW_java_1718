@@ -2,44 +2,28 @@ package pages;
 
 import com.microsoft.playwright.Page;
 
-import components.DragDropArea;
-
-public class DragDropPage extends BasePage {
-    private DragDropArea dragDropArea;
-    private static final String DRAG_DROP_URL = "https://the-internet.herokuapp.com/drag_and_drop";
+public class DragDropPage {
+    private final Page page;
+    private components.DragDropArea dragDropArea;  // Полный путь
     
     public DragDropPage(Page page) {
-        super(page);
+        this.page = page;
     }
     
-    // Ленивая инициализация компонента
-    public DragDropArea dragDropArea() {
+    public components.DragDropArea dragDropArea() {
         if (dragDropArea == null) {
-            dragDropArea = new DragDropArea(page);
+            dragDropArea = new components.DragDropArea(page);
         }
         return dragDropArea;
     }
     
-    // Цепочки вызовов 
     public DragDropPage open() {
-        navigateTo(DRAG_DROP_URL);
+        page.navigate("https://the-internet.herokuapp.com/drag_and_drop");
         return this;
     }
     
-    public DragDropPage dragElementAToB() {
+    public DragDropPage dragAToB() {
         dragDropArea().dragAToB();
         return this;
-    }
-    
-    public DragDropPage verifyElementBContainsText(String expectedText) {
-        dragDropArea().verifyTextInBEquals(expectedText);
-        return this;
-    }
-    
-    // Альтернативный подход с полной цепочкой
-    public DragDropPage performDragAndDropAndVerify() {
-        return open()
-            .dragElementAToB()
-            .verifyElementBContainsText("A");
     }
 }

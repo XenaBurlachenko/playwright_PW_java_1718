@@ -19,31 +19,13 @@ public class DragDropArea {
         }
     }
     
-    public DragDropArea dragAToB() {
+    public void dragAToB() {
         initElements();
         elementA.dragTo(elementB);
-        return this;
-    }
-    
-    public String getTextA() {
-        initElements();
-        return elementA.textContent();
     }
     
     public String getTextB() {
         initElements();
-        return elementB.textContent();
-    }
-    
-    public DragDropArea verifyTextInBEquals(String expectedText) {
-        initElements();
-        String actualText = getTextB();
-        if (!actualText.equals(expectedText)) {
-            throw new AssertionError(
-                String.format("Expected text '%s' in element B, but found '%s'", 
-                expectedText, actualText)
-            );
-        }
-        return this;
+        return elementB.textContent().trim();
     }
 }
