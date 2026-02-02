@@ -1,6 +1,11 @@
-name: Playwright POM Tests
+name: Playwright Tests
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -9,14 +14,29 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Java
+    - name: Set up JDK 11
       uses: actions/setup-java@v4
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: maven
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Install Playwright browsers
+      run: |
+        mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps chromium"
         
     - name: Run tests
       run: mvn clean test -B
-      env:
-        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      
+    - name: Upload test reports
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: target/surefire-reports/
