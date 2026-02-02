@@ -1,2 +1,5 @@
-C:\stepik_PW_java_1718\src\test\java\DynamicControlsTest.java
-C:\stepik_PW_java_1718\src\test\java\HoverTest.java
+C:\stepik_PW_java_1718\src\test\java\components\DragDropArea.java
+C:\stepik_PW_java_1718\src\test\java\factories\PageFactory.java
+C:\stepik_PW_java_1718\src\test\java\pages\BasePage.java
+C:\stepik_PW_java_1718\src\test\java\pages\DragDropPage.java
+C:\stepik_PW_java_1718\src\test\java\tests\DragDropTest.java
