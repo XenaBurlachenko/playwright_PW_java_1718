@@ -1,11 +1,15 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
-import com.microsoft.playwright.*;
-import static org.junit.jupiter.api.Assertions.*;
-import components.DragDropArea;
+import org.junit.jupiter.api.Test;
+
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+
+import pages.DragDropPage;
 
 public class DragDropTest {
     private Playwright playwright;
@@ -29,7 +33,8 @@ public class DragDropTest {
     
     @Test
     public void testDragAndDrop() {
-        dragDropPage.navigateTo("https://the-internet.herokuapp.com/drag_and_drop");
+        page.navigate("https://the-internet.herokuapp.com/drag_and_drop");
+        
         dragDropPage.dragAToB();
         assertEquals("A", dragDropPage.dragDropArea().getTextB());
     }
